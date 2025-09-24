@@ -15,7 +15,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
-      <div className="w-full fixed top-0z-50 bg-background/95 backdrop-blur">
+      <div className="w-full fixed top-0 z-50 bg-background/50 backdrop-blur">
         <div className="absolute inset-0 border-b border-primary/10" />
         <header className="flex items-center justify-between h-16 relative max-w-7xl mx-auto px-4 py-2">
           <div className="hover:opacity-80 transition-opacity duration-500">
@@ -56,7 +56,7 @@ const Header = () => {
                 {isMenuOpen ? (
                   <X className="w-4 h-4" />
                 ) : (
-                  <Menu className="w-4 h-4" />
+                  <Menu className="w-4 h-4 " />
                 )}
               </Button>
             </div>
@@ -64,7 +64,7 @@ const Header = () => {
         </header>
       </div>
       {isMenuOpen && (
-        <div className="flex flex-col absolute top-20 left-10">
+        <div className="flex flex-col absolute bg-background w-[82%] z-50 backdrop-blur-md top-20 left-10">
           {navItems.map((item) => (
             <div className="flex flex-col md:hidden">
               <Link
