@@ -23,7 +23,7 @@ import {
   Brain,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +32,9 @@ import {
 } from "@/components/ui/dialog";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { AnxietyGames } from "@/components/games/Anxiety-games";
+import { MoodForm } from "@/components/mood/Mood-form";
+import { ActivityLogger } from "@/components/activities/activity-logger";
+import { useRouter } from "next/router";
 
 const DashboardPage = () => {
   const wellnessStats = [
@@ -70,12 +73,38 @@ const DashboardPage = () => {
   ];
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showMoodModal, setShowMoodModal] = useState(false);
+  const [isSavingMood, setIsSavingMood] = useState(false);
+  const [showActivityLogger, setShowActivityLogger] = useState(false);
 
+  const router = useRouter();
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
+  const handleMoodSubmit = async (data: { moodScore: number }) => {
+    setIsSavingMood(true);
+    try {
+      // await saveMoodData({
+      //   userId: "default-user",
+      //   mood: data.moodScore,
+      //   note: "",
+      // });
+      setShowMoodModal(false);
+    } catch (error) {
+      console.error("Error saving mood:", error);
+    } finally {
+      setIsSavingMood(false);
+    }
+  };
+
+  const handleStartTherapy = () => {
+    router.push("/therapy/new");
+  }
+  const handleAICheckIn = () => {
+    // Placeholder for AI check-in functionality
+    setShowActivityLogger(true);
+  }
   return (
     <div className="min-h-screen bg-background">
       <Container className="pt-20 pb-8 space-y-8">
@@ -132,7 +161,7 @@ const DashboardPage = () => {
                         "bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90",
                         "transition-all duration-200 group-hover:translate-y-[-2px]"
                       )}
-                      // onClick={handleStartTherapy}
+                      onClick={handleStartTherapy}
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
@@ -160,7 +189,7 @@ const DashboardPage = () => {
                           "justify-center items-center text-center",
                           "transition-all duration-200 group-hover:translate-y-[-2px]"
                         )}
-                        // onClick={() => setShowMoodModal(true)}
+                        onClick={() => setShowMoodModal(true)}
                       >
                         <div className="w-10 h-10 rounded-full bg-rose-500/10 flex items-center justify-center mb-2">
                           <Heart className="w-5 h-5 text-rose-500" />
@@ -180,7 +209,7 @@ const DashboardPage = () => {
                           "justify-center items-center text-center",
                           "transition-all duration-200 group-hover:translate-y-[-2px]"
                         )}
-                        // onClick={handleAICheckIn}
+                        onClick={handleAICheckIn}
                       >
                         <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-2">
                           <BrainCircuit className="w-5 h-5 text-blue-500" />
@@ -264,9 +293,18 @@ const DashboardPage = () => {
               Move the slider to track your current mood
             </DialogDescription>
           </DialogHeader>
-          {/* <MoodForm onSuccess={() => setShowMoodModal(false)} /> */}
+          <MoodForm
+            /*OnSubmit={handleMoodSubmit}*/ onSuccess={() =>
+              setShowMoodModal(false)
+            }
+          />
         </DialogContent>
       </Dialog>
+      <ActivityLogger
+        open={showActivityLogger}
+        onOpenChange={setShowActivityLogger}
+        onActivityLogged={() => setShowActivityLogger(false)}
+      />  
     </div>
   );
 };
