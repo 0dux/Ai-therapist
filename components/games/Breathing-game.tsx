@@ -27,7 +27,7 @@ export function BreathingGame() {
             setPhase("hold");
             return 0;
           }
-          return p + 2;
+          return p + 1;
         });
       }, 100);
     } else if (phase === "hold") {
@@ -37,7 +37,7 @@ export function BreathingGame() {
             setPhase("exhale");
             return 0;
           }
-          return p + 4;
+          return p + 2;
         });
       }, 100);
     } else {
@@ -48,11 +48,11 @@ export function BreathingGame() {
               setIsComplete(true);
               return p;
             }
-            setPhase("inhale");
             setRound((r) => r + 1);
+            setPhase("inhale");
             return 0;
           }
-          return p + 2;
+          return p + 1;
         });
       }, 100);
     }
