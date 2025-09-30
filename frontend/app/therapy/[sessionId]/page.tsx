@@ -31,14 +31,14 @@ import { BreathingGame } from "@/components/games/Breathing-game";
 import { ZenGarden } from "@/components/games/Zen-garden";
 import { ForestGame } from "@/components/games/Forest-game";
 import { Badge } from "@/components/ui/badge";
-// import {
-//   createChatSession,
-//   sendChatMessage,
-//   getChatHistory,
-//   ChatMessage,
-//   getAllChatSessions,
-//   ChatSession,
-// } from "@/lib/api/chat";
+import {
+  createChatSession,
+  sendChatMessage,
+  getChatHistory,
+  ChatMessage,
+  getAllChatSessions,
+  ChatSession,
+} from "@/lib/api/chat";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
 import { Separator } from "@/components/ui/separator";
