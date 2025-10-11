@@ -121,3 +121,7 @@
 {"level":"info","message":"Activity logged for user 68e0d432b043240370714ffd","timestamp":"2025-10-04T08:19:37.917Z"}
 {"level":"info","message":"Mood entry created for user 68e0d432b043240370714ffd","timestamp":"2025-10-04T08:23:00.569Z"}
 {"level":"info","message":"Mood entry created for user 68e0d432b043240370714ffd","timestamp":"2025-10-04T08:26:51.879Z"}
+{"level":"error","message":"Error connecting to MongoDB: MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2025-10-04T17:24:49.907Z"}
+{"level":"info","message":"MongoDB connected successfully","timestamp":"2025-10-04T17:31:41.672Z"}
+{"level":"info","message":"Server is running on port 3000\n      http://localhost:3000/","timestamp":"2025-10-04T17:31:41.676Z"}
+{"level":"info","message":"Inngest functions available:\n      http://localhost:3000/api/inngest","timestamp":"2025-10-04T17:31:41.677Z"}
